@@ -12,6 +12,7 @@ import com.dynatic.cleanarchandroiddemo.presentation.MainPresenter;
 import com.dynatic.data.datasource.AdNetworkDatasource;
 import com.dynatic.data.repository.AdRepositoryImpl;
 import com.dynatic.domain.model.Ad;
+import com.dynatic.domain.usecase.LoadAdUsecase;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        presenter = new MainPresenter(this, new AdRepositoryImpl(new AdNetworkDatasource()));
+        presenter = new MainPresenter(this, new LoadAdUsecase(new AdRepositoryImpl(new AdNetworkDatasource())));
 
         textView = findViewById(R.id.text);
         button = findViewById(R.id.button);
